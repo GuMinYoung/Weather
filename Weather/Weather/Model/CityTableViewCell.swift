@@ -14,7 +14,7 @@ class CityTableViewCell: UITableViewCell{
     @IBOutlet weak var humidityLabel: UILabel!
     
     func update(_ city: City) {
-        icon.image = city.weatherImage
+        icon.load(image: city.weatherImage)
         nameLabel.text = city.name
         tempLabel.text = "현재기온 " + String(city.temp ?? 0) + "도"
         humidityLabel.text = "현재습도 " + String(city.humidity ?? 0) + "%"
