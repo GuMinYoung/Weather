@@ -15,6 +15,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = "도시 별 날씨"
         cityTableView.delegate = self
         cityTableView.dataSource = self
         cityWeatherService.fetchCurWeather { cities in
