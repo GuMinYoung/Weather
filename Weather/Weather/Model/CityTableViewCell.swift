@@ -16,7 +16,7 @@ class CityTableViewCell: UITableViewCell{
     func update(_ city: City) {
         icon.image = city.weatherImage
         nameLabel.text = city.name
-        tempLabel.text = String(city.temp ?? 0)
-        humidityLabel.text = String(city.humidity ?? 0)
+        tempLabel.text = "현재기온 " + String(city.temp ?? 0) + "도"
+        humidityLabel.text = "현재습도 " + String(city.humidity ?? 0) + "%"
     }
 }
