@@ -84,19 +84,20 @@ struct City {
     var name: String?
     var temp: Double?
     var humidity: Int?
-    var weatherImage: UIImage?
+    var weatherImageUrl: String?
     
     init() {
         self.name = ""
         self.temp = 0
         self.humidity = 0
-        self.weatherImage = nil
+        self.weatherImageUrl = ""
     }
     
     init(name: String, temp: Double, humidity: Int, iconId: String) {
         self.name = name
         self.temp = temp
         self.humidity = humidity
-        self.weatherImage = UIImage(data: "https://openweathermap.org/img/wn/\(iconId)@2x.png".urlToData())
+        self.weatherImageUrl = "https://openweathermap.org/img/wn/\(iconId)@2x.png"
+
     }
 }
