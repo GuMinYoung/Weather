@@ -69,7 +69,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="humidityLabel" destination="XkG-w1-rTq" id="dC5-aW-hQQ"/>
-                                            <outlet property="icon" destination="knq-vp-fCt" id="i2D-Yo-6BB"/>
+                                            <outlet property="iconImageView" destination="knq-vp-fCt" id="i2D-Yo-6BB"/>
                                             <outlet property="nameLabel" destination="eTt-56-vzu" id="qWC-rR-ssH"/>
                                             <outlet property="tempLabel" destination="txm-CH-iHb" id="6XE-YZ-cgO"/>
                                         </connections>
