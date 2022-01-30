@@ -13,10 +13,10 @@ class CityTableViewCell: UITableViewCell{
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
     
-    func update(city: City) {
+    func update(_ city: City) {
         icon.image = city.weatherImage
         nameLabel.text = city.name
-        tempLabel.text = String(city.temp)
-        humidityLabel.text = String(city.humidity)
+        tempLabel.text = String(city.temp ?? 0)
+        humidityLabel.text = String(city.humidity ?? 0)
     }
 }
