@@ -1,5 +1,5 @@
 //
-//  WeatherViewController.swift
+//  CityListViewController.swift
 //  Weather
 //
 //  Created by 구민영 on 2022/01/27.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController {
+class CityListViewController: UIViewController {
     @IBOutlet weak var cityTableView: UITableView!
     private var cityWeatherListVM = CityWeatherListViewModel()
     let cityWeatherService = CityWeatherService()
@@ -28,11 +28,11 @@ class WeatherViewController: UIViewController {
     }
 }
 
-extension WeatherViewController: UITableViewDelegate {
+extension CityListViewController: UITableViewDelegate {
     
 }
 
-extension WeatherViewController: UITableViewDataSource {
+extension CityListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.cityWeatherListVM.numberOfRowsInSection(section)
     }
