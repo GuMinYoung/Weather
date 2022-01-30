@@ -98,8 +98,6 @@ struct CityWeatherService: APIManager {
     }
     
     // todo
-    // - 날씨이미지 기본 물음표
     // - 액티비티 인디케이터
-    // - 날씨아이콘 표시
 }
 
