@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CityWeatherService: APIManager {
+struct CityListService: APIManager {
     let cityCode = [
         1842616:"공주",
         1841808:"광주",
@@ -35,9 +35,9 @@ struct CityWeatherService: APIManager {
     let workingQueue = DispatchQueue(label: "city.concurrent", attributes: .concurrent)
     let defaultQueue = DispatchQueue.global()
     
-    func fetchCurWeather(completion: @escaping ([City]?) -> Void) {
+    func fetchCityList(completion: @escaping ([City]?) -> Void) {
         let urlStrings = cityCode.map {
-            CityWeatherService.curWeatherUrl($0.key)
+            CityListService.curWeatherUrl($0.key)
         }
         var arr = [City]()
         

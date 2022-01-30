@@ -9,8 +9,8 @@ import UIKit
 
 class CityListViewController: UIViewController {
     @IBOutlet weak var cityTableView: UITableView!
-    private var cityWeatherListVM = CityWeatherListViewModel()
-    let cityWeatherService = CityWeatherService()
+    private var cityWeatherListVM = CityListViewModel()
+    let cityWeatherService = CityListService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +18,9 @@ class CityListViewController: UIViewController {
         self.navigationItem.title = "도시 별 날씨"
         cityTableView.delegate = self
         cityTableView.dataSource = self
-        cityWeatherService.fetchCurWeather { cities in
+        cityWeatherService.fetchCityList { cities in
             guard let cities = cities else {return}
-            self.cityWeatherListVM = CityWeatherListViewModel(cities: cities)
+            self.cityWeatherListVM = CityListViewModel(cities: cities)
             DispatchQueue.main.async {
                 self.cityTableView.reloadData()
             }

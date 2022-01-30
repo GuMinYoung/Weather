@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CityWeatherListViewModel {
+struct CityListViewModel {
     var cities = [City]()
     
     init(cities: [City]) {
@@ -17,7 +17,7 @@ struct CityWeatherListViewModel {
     init() {}
 }
 
-extension CityWeatherListViewModel {
+extension CityListViewModel {
     var numberOfSections: Int {
         return 1
     }
