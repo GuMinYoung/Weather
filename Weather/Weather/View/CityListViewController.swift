@@ -7,13 +7,18 @@
 
 import UIKit
 
-class CityListViewController: UIViewController {
+class CityListViewController: UIViewController, Storyboarded {
     @IBOutlet weak var cityTableView: UITableView!
     private var cityWeatherListVM = CityListViewModel()
     let cityWeatherService = CityListService()
+    var coordinator: CityCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let nav = self.navigationController {
+            coordinator = CityCoordinator(navigationController: nav)
+        }
         
         self.navigationItem.title = "도시 별 날씨"
         cityTableView.delegate = self
@@ -26,10 +31,14 @@ class CityListViewController: UIViewController {
             }
         }
     }
+    
+    
 }
 
 extension CityListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.present()
+    }
 }
 
 extension CityListViewController: UITableViewDataSource {
