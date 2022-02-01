@@ -74,7 +74,19 @@ struct CityListService: APIManager {
             return City()
         }
         
-        return City(name: CityCode.dic[decodedData.id ?? 0] ?? "none", temp: (decodedData.main?.temp) ?? 0, humidity: (decodedData.main?.humidity) ?? 0, iconId: decodedData.weather?.first?.icon ?? "01d")
+        //return City(id: decodedData.id ?? 0, name: CityCode.dic[decodedData.id ?? 0] ?? "none", temp: (decodedData.main?.temp) ?? 0, humidity: (decodedData.main?.humidity) ?? 0, iconId: decodedData.weather?.first?.icon ?? "01d")
+        
+        return City(cityId: decodedData.id ?? 0,
+             name: CityCode.dic[decodedData.id ?? 0] ?? "none",
+             iconId: decodedData.weather?.first?.icon ?? "01d",
+             curTemp: (decodedData.main?.temp) ?? Double(0),
+             description: decodedData.weather?.first?.weatherDescription ?? "",
+             humidity: (decodedData.main?.humidity) ?? 0,
+             feelsLike: (decodedData.main?.feelsLike) ?? Double(0),
+             tempMin: (decodedData.main?.tempMin) ?? Double(0),
+             tempMax: (decodedData.main?.tempMax) ?? Double(0),
+             pressure: (decodedData.main?.pressure) ?? 0,
+             windSpeed: (decodedData.wind?.speed) ?? Double(0))
     }
     
     // todo
