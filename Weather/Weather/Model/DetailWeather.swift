@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct DetailWeather {
+    var cityId: Int?             // 도시Id
     var name: String?               // 도시이름
     var weatherImageUrl: String?    // 날씨아이콘
     var curTemp: Double?            // 현재기온
@@ -21,6 +22,7 @@ struct DetailWeather {
     var windSpeed: Double?          // 풍속
     
     init() {
+        self.cityId = 0
         self.name = ""
         self.weatherImageUrl = ""
         self.curTemp = 0
@@ -33,7 +35,8 @@ struct DetailWeather {
         self.windSpeed = 0
     }
     
-    init(name: String, iconId: String, curTemp: Double, description: String, humidity: Int, feelsLike: Double, tempMin: Double, tempMax: Double, pressure: Int, windSpeed: Double) {
+    init(cityId: Int, name: String, iconId: String, curTemp: Double, description: String, humidity: Int, feelsLike: Double, tempMin: Double, tempMax: Double, pressure: Int, windSpeed: Double) {
+        self.cityId = cityId
         self.name = name
         self.weatherImageUrl = "https://openweathermap.org/img/wn/\(iconId)@2x.png"
         self.curTemp = curTemp
