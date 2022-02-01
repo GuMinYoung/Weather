@@ -17,6 +17,10 @@ import Foundation
 // MARK: - Welcome
 struct ForecastResult: Codable {
     let forecastList: [List]?
+    
+    enum CodingKeys: String, CodingKey {
+        case forecastList = "list"
+    }
 }
 
 // MARK: - List
@@ -37,7 +41,6 @@ struct Forecast {
     }
 }
 
-
 struct ForecastService: APIManager {
     static let shared = ForecastService()
     private init() {}
@@ -53,10 +56,8 @@ struct ForecastService: APIManager {
     func performRequest(with urlString: String, completion: @escaping ([Forecast]?) -> Void) {
         print(#function)
         
-        // 1. URL 구조체 만들기
         guard let url = URL(string: urlString) else { return }
-
-        // 3. 세션에 작업 부여
+        
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil {
                 print(error!)
@@ -69,7 +70,6 @@ struct ForecastService: APIManager {
                 return
             }
             
-            // 데이터 분석하기
             if let forecastList = self.parseJSON(safeData) {
                 //print("parse")
                 completion(forecastList)
@@ -87,13 +87,13 @@ struct ForecastService: APIManager {
             print("파싱 실패")
             return [Forecast]()
         }
-
+        
         guard let forecastLists = decodedData.forecastList else {return [Forecast]()}
-     
+        
         let myforecastLists = forecastLists.map {
             Forecast(tempMin: $0.main?.tempMin ?? 0, tempMax: $0.main?.tempMax ?? 0, humidity: $0.main?.humidity ?? 0)
-            }
-            
-            return myforecastLists
+        }
+        
+        return myforecastLists
     }
 }
