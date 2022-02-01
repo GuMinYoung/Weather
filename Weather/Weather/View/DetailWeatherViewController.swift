@@ -22,6 +22,10 @@ class DetailWeatherViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func touchUpForecastButton(_ sender: UIButton) {
+        viewModel?.forecastClicked()
+    }
+    
     func setNavigationTitle(_ text: String) {
         self.navigationItem.title = text
     }
