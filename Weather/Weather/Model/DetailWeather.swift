@@ -1,14 +1,15 @@
 //
-//  City.swift
+//  DetailWeather.swift
 //  Weather
 //
-//  Created by 구민영 on 2022/01/27.
+//  Created by 구민영 on 2022/01/31.
 //
 
 import Foundation
+import UIKit
 
-struct City {
-    var cityId: Int?
+struct DetailWeather {
+    var cityId: Int?             // 도시Id
     var name: String?               // 도시이름
     var weatherImageUrl: String?    // 날씨아이콘
     var curTemp: Double?            // 현재기온
@@ -33,14 +34,6 @@ struct City {
         self.pressure = 0
         self.windSpeed = 0
     }
-    
-//    init(id: Int, name: String, temp: Double, humidity: Int, iconId: String) {
-//        self.cityId = id
-//        self.name = name
-//        self.curTemp = temp
-//        self.humidity = humidity
-//        self.weatherImageUrl = "https://openweathermap.org/img/wn/\(iconId)@2x.png"
-//    }
     
     init(cityId: Int, name: String, iconId: String, curTemp: Double, description: String, humidity: Int, feelsLike: Double, tempMin: Double, tempMax: Double, pressure: Int, windSpeed: Double) {
         self.cityId = cityId

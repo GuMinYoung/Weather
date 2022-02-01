@@ -7,37 +7,17 @@
 
 import Foundation
 
-struct CityWeatherService: APIManager {
-    let cityCode = [
-        1842616:"공주",
-        1841808:"광주",
-        1842225:"구미",
-        1842025:"군산",
-        1835327:"대구",
-        1835224:"대전",
-        1841066:"목포",
-        1838519:"부산",
-        1835895:"서산",
-        1835847:"서울",
-        1836553:"속초",
-        1835553:"수원",
-        1835648:"순천",
-        1833742:"울산",
-        1843491:"익산",
-        1845457:"전주",
-        1846266:"제주",
-        1845759:"천안",
-        1845604:"청주",
-        1845136:"춘천"
-    ]
-    
+struct CityListService: APIManager {
     let group = DispatchGroup()
+    
     let workingQueue = DispatchQueue(label: "city.concurrent", attributes: .concurrent)
     let defaultQueue = DispatchQueue.global()
+    static let shared = CityListService()
+    private init () {}
     
-    func fetchCurWeather(completion: @escaping ([City]?) -> Void) {
-        let urlStrings = cityCode.map {
-            CityWeatherService.curWeatherUrl($0.key)
+    func fetchCityList(completion: @escaping ([City]?) -> Void) {
+        let urlStrings = CityCode.dic.map {
+            CityListService.curWeatherUrl($0.key)
         }
         var arr = [City]()
         
@@ -94,7 +74,19 @@ struct CityWeatherService: APIManager {
             return City()
         }
         
-        return City(name: cityCode[decodedData.id ?? 0] ?? "none", temp: (decodedData.main?.temp) ?? 0, humidity: (decodedData.main?.humidity) ?? 0, iconId: decodedData.weather?.first?.icon ?? "01d")
+        //return City(id: decodedData.id ?? 0, name: CityCode.dic[decodedData.id ?? 0] ?? "none", temp: (decodedData.main?.temp) ?? 0, humidity: (decodedData.main?.humidity) ?? 0, iconId: decodedData.weather?.first?.icon ?? "01d")
+        
+        return City(cityId: decodedData.id ?? 0,
+             name: CityCode.dic[decodedData.id ?? 0] ?? "none",
+             iconId: decodedData.weather?.first?.icon ?? "01d",
+             curTemp: (decodedData.main?.temp) ?? Double(0),
+             description: decodedData.weather?.first?.weatherDescription ?? "",
+             humidity: (decodedData.main?.humidity) ?? 0,
+             feelsLike: (decodedData.main?.feelsLike) ?? Double(0),
+             tempMin: (decodedData.main?.tempMin) ?? Double(0),
+             tempMax: (decodedData.main?.tempMax) ?? Double(0),
+             pressure: (decodedData.main?.pressure) ?? 0,
+             windSpeed: (decodedData.wind?.speed) ?? Double(0))
     }
     
     // todo

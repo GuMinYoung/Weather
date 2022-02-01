@@ -10,6 +10,7 @@ import UIKit
 
 extension UIImageView {
     func setImage(urlString: String) {
+        //print(#function)
         // 저장된(이미 다운로드한) 이미지가 있으면 사용
         if let cacheImage = CacheManager.shared.object(forKey: urlString as NSString) {
             self.image = cacheImage

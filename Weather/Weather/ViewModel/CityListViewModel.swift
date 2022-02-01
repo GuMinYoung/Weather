@@ -7,8 +7,13 @@
 
 import Foundation
 
-struct CityWeatherListViewModel {
+protocol CityListViewModelCoordinatorDelegate: AnyObject {
+    func selectCity(info: City)
+}
+
+class CityListViewModel {
     var cities = [City]()
+    weak var coordinatorDelegate: CityListViewModelCoordinatorDelegate?
     
     init(cities: [City]) {
         self.cities = cities
@@ -17,7 +22,7 @@ struct CityWeatherListViewModel {
     init() {}
 }
 
-extension CityWeatherListViewModel {
+extension CityListViewModel {
     var numberOfSections: Int {
         return 1
     }
@@ -28,5 +33,11 @@ extension CityWeatherListViewModel {
 
     func city(at index: Int) -> City {
         return self.cities[index]
+    }
+    
+    func selectRow(row: Int) {
+        let city = self.cities[row]
+        
+        self.coordinatorDelegate?.selectCity(info: city)
     }
 }
