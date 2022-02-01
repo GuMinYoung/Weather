@@ -52,7 +52,7 @@ class AppCoordinator: BaseCoordinator {
 
 extension AppCoordinator: CityListCoordinatorDelegate {
     func didFinishCityListCordinator(coordinator: Coordinator, with city: City) {
-        self.free(coordinator: coordinator)
+        //self.free(coordinator: coordinator)
         self.detailWeatherFlow(with: city)
     }
 }
