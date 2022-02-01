@@ -16,7 +16,8 @@ class DetailWeatherViewController: UIViewController {
         super.viewDidLoad()
         
         guard let viewModel = viewModel else {return}
-
+        
+        self.navigationItem.title = "날씨 정보"
         detailView?.update(viewModel.cityInfo)
         // Do any additional setup after loading the view.
     }

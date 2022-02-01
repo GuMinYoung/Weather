@@ -14,7 +14,7 @@ class CityListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "도시 별 날씨"
+        self.navigationItem.title = "도시 목록"
         cityTableView.delegate = self
         cityTableView.dataSource = self
     }
