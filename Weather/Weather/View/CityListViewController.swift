@@ -7,43 +7,28 @@
 
 import UIKit
 
-class CityListViewController: UIViewController, Storyboarded {
+class CityListViewController: UIViewController {
     @IBOutlet weak var cityTableView: UITableView!
-    private var cityWeatherListVM = CityListViewModel()
-    let cityWeatherService = CityListService()
-    var coordinator: CityCoordinator?
+    var viewModel: CityListViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let nav = self.navigationController {
-            coordinator = CityCoordinator(navigationController: nav)
-        }
-        
+
         self.navigationItem.title = "도시 별 날씨"
         cityTableView.delegate = self
         cityTableView.dataSource = self
-        cityWeatherService.fetchCityList { cities in
-            guard let cities = cities else {return}
-            self.cityWeatherListVM = CityListViewModel(cities: cities)
-            DispatchQueue.main.async {
-                self.cityTableView.reloadData()
-            }
-        }
     }
-    
-    
 }
 
 extension CityListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.present()
+        viewModel?.selectRow(row: indexPath.row)
     }
 }
 
 extension CityListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cityWeatherListVM.numberOfRowsInSection(section)
+        return self.viewModel?.numberOfRowsInSection(section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +36,7 @@ extension CityListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.update(cityWeatherListVM.city(at: indexPath.row))
+        cell.update(viewModel?.city(at: indexPath.row) ?? City())
         return cell
     }
 }
