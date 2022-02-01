@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol CityListCoordinatorDelegate: AnyObject {
-    func didFinishCityListCordinator(coordinator: Coordinator, with city:City)
+    func didFinishCityListCordinator(coordinator: Coordinator, city info: City)
   }
 
 class CityCoordinator: BaseCoordinator {
@@ -40,10 +40,18 @@ class CityCoordinator: BaseCoordinator {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityListViewController") as? CityListViewController
         return vc
     }()
+    
+//    lazy var detailWeatherVC: DetailWeatherViewController? = {
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailWeatherViewController") as? DetailWeatherViewController
+//        return vc
+//    }()
 }
 
 extension CityCoordinator: CityListViewModelCoordinatorDelegate {
-    func selectCity(_ city: City) {
-        self.delegate?.didFinishCityListCordinator(coordinator: self, with: city)
+    func selectCity(info: City) {
+//        if let vc = self.detailWeatherVC {
+//          self.navigationController.pushViewController(vc, animated: true)
+//        }
+        self.delegate?.didFinishCityListCordinator(coordinator: self, city: info)
     }
 }

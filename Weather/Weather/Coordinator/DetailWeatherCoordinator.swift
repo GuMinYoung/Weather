@@ -26,7 +26,7 @@ class DetailWeatherCoordinator: BaseCoordinator {
       return vc
     }()
     
-    init(navigationController:UINavigationController, with city: City) {
+    init(navigationController:UINavigationController, city: City) {
       self.navigationController = navigationController
       self.city = city
     }

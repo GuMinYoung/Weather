@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CityListViewModelCoordinatorDelegate: AnyObject {
-    func selectCity(_ city: City)
+    func selectCity(info: City)
 }
 
 class CityListViewModel {
@@ -36,6 +36,8 @@ extension CityListViewModel {
     }
     
     func selectRow(row: Int) {
-        self.coordinatorDelegate?.selectCity(self.cities[row])
+        let city = self.cities[row]
+        
+        self.coordinatorDelegate?.selectCity(info: city)
     }
 }

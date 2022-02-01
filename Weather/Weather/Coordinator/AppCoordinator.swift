@@ -42,8 +42,8 @@ class AppCoordinator: BaseCoordinator {
         cityListCoordinator.start()
     }
     
-    private func detailWeatherFlow(with city: City) {
-        let detailWeatherCoordinator = DetailWeatherCoordinator(navigationController: self.rootViewController, with: city)
+    private func detailWeatherFlow(city info: City) {
+        let detailWeatherCoordinator = DetailWeatherCoordinator(navigationController: self.rootViewController, city: info)
         detailWeatherCoordinator.delegate = self
         store(coordinator: detailWeatherCoordinator)
         detailWeatherCoordinator.start()
@@ -51,9 +51,9 @@ class AppCoordinator: BaseCoordinator {
 }
 
 extension AppCoordinator: CityListCoordinatorDelegate {
-    func didFinishCityListCordinator(coordinator: Coordinator, with city: City) {
+    func didFinishCityListCordinator(coordinator: Coordinator, city info: City) {
         //self.free(coordinator: coordinator)
-        self.detailWeatherFlow(with: city)
+        self.detailWeatherFlow(city: info)
     }
 }
 
