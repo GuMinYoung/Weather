@@ -21,5 +21,13 @@ class DetailView: UIView {
     
     func update(_ city: City) {
         cityNameLabel.text = city.name
+        weatherImageView.setImage(urlString: city.weatherImageUrl ?? "")
+        curWeatherLabel.text =  String(city.curTemp ?? 0) + " | " + (city.description ?? "")
+        humidityLabel.text = String(city.humidity ?? 0) + "%"
+        windSpeedLabel.text = String(city.windSpeed ?? 0) + "m/s"
+        pressureLabel.text = String(city.pressure ?? 0) + "hPa"
+        feelsLikeLabel.text = String(city.feelsLike ?? 0) + "도"
+        tempMinLabel.text = String(city.tempMin ?? 0) + "도"
+        tempMaxLabel.text = String(city.tempMax ?? 0) + "도"
     }
 }

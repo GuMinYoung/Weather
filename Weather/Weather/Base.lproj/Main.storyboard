@@ -273,7 +273,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="COi-rW-KT6"/>
                     <connections>
-                        <outlet property="view" destination="5cr-id-Sh0" id="PQF-9L-Fzu"/>
+                        <outlet property="detailView" destination="5cr-id-Sh0" id="h3O-2f-EzQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2t1-uQ-dFm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
