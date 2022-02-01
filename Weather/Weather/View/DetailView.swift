@@ -19,7 +19,7 @@ class DetailView: UIView {
     @IBOutlet weak var tempMinLabel: UILabel!
     @IBOutlet weak var tempMaxLabel: UILabel!
     
-    func update() {
-        
+    func update(_ city: City) {
+        cityNameLabel.text = city.name
     }
 }
