@@ -16,7 +16,11 @@ class CityListViewModel {
     weak var coordinatorDelegate: CityListViewModelCoordinatorDelegate?
     
     init(cities: [City]) {
-        self.cities = cities
+        self.cities = cities.sorted {
+            guard let lhs = $0.name,
+                  let rhs = $1.name else {return true}
+            return lhs < rhs
+        }
     }
     
     init() {}
