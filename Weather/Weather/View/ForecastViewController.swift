@@ -9,7 +9,9 @@ import UIKit
 
 class ForecastViewController: UIViewController {
     var viewModel: ForecastViewModel?
-    @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var humidityView: GraphView!
+    @IBOutlet weak var tempMinView: GraphView!
+    @IBOutlet weak var tempMaxView: GraphView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +24,10 @@ class ForecastViewController: UIViewController {
         let tempMinList = viewModel.forecastList.map { $0.tempMin }
         let tempMaxList = viewModel.forecastList.map { $0.tempMax }
         
-//        graphView.graphPoints = humidityList
-//        graphView.color = UIColor.black
-//
-//        graphView.graphPoints = tempMaxList
-//        graphView.color = UIColor.red
-        
-        graphView.graphPoints = tempMinList
-        graphView.color = UIColor.blue
+        humidityView.graphPoints = (GraphKey.humidity, humidityList)
+        tempMinView.graphPoints = (GraphKey.tempMin, tempMinList)
+        tempMaxView.graphPoints = (GraphKey.tempMax, tempMaxList)
+    
         print(viewModel.forecastList)
         // Do any additional setup after loading the view.
     }

@@ -291,16 +291,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZXj-mg-NXA" customClass="GraphView" customModule="Weather" customModuleProvider="target">
-                                <rect key="frame" x="57" y="118" width="265" height="316"/>
+                                <rect key="frame" x="55" y="84" width="265" height="141"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96587628126144409" green="0.93372196848845168" blue="0.87901455856987931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Too-M0-UaA" customClass="GraphView" customModule="Weather" customModuleProvider="target">
+                                <rect key="frame" x="55" y="263" width="265" height="141"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96587628130000003" green="0.9337219685" blue="0.8790145586" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rt2-0Q-Fjo" customClass="GraphView" customModule="Weather" customModuleProvider="target">
+                                <rect key="frame" x="55" y="449" width="265" height="141"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96587628130000003" green="0.9337219685" blue="0.8790145586" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="flq-Pb-zKy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="graphView" destination="ZXj-mg-NXA" id="fu9-FG-NKe"/>
+                        <outlet property="humidityView" destination="ZXj-mg-NXA" id="LHN-SO-gFB"/>
+                        <outlet property="tempMaxView" destination="rt2-0Q-Fjo" id="WUp-dV-HYN"/>
+                        <outlet property="tempMinView" destination="Too-M0-UaA" id="5nS-ww-78J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9s4-q5-NSD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
