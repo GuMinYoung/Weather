@@ -13,7 +13,7 @@ struct CityListService: APIManager {
     let workingQueue = DispatchQueue(label: "city.concurrent", attributes: .concurrent)
     let defaultQueue = DispatchQueue.global()
     static let shared = CityListService()
-    private init () {}
+    private init() {}
     
     func fetchCityList(completion: @escaping ([City]?) -> Void) {
         let urlStrings = CityCode.dic.map {

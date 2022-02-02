@@ -23,6 +23,7 @@ class CityListViewController: UIViewController {
 extension CityListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel?.selectRow(row: indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }
 

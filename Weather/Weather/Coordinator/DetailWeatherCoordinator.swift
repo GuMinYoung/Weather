@@ -26,6 +26,16 @@ class DetailWeatherCoordinator: BaseCoordinator {
       return vc
     }()
     
+    lazy var foreCastVC: ForecastViewController? = {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ForecastViewController") as? ForecastViewController
+        vc?.modalPresentationStyle = .pageSheet
+        
+        //let viewModel = ForecastViewModel(cityId: city.cityId)
+        //vc?.viewModel = viewModel
+        //vc?.viewModel?.coordinatorDelegate = self
+        return vc
+    }()
+    
     init(navigationController:UINavigationController, city: City) {
       self.navigationController = navigationController
       self.city = city
@@ -43,6 +53,21 @@ class DetailWeatherCoordinator: BaseCoordinator {
 
 extension DetailWeatherCoordinator: DetailWeatherViewModelCoordinatorlDelegate {
   func forecast() {
-    self.delegate?.didFinishDetailWeatherCoordinator(coordinator: self)
+//    self.delegate?.didFinishDetailWeatherCoordinator(coordinator: self)
+      var viewModel = ForecastViewModel()
+      if let cityId = self.city.cityId {
+          ForecastService.shared.fetchForeCast(cityId: cityId) { forecastList in
+              guard let forecastList = forecastList else {return}
+              viewModel = ForecastViewModel(forecastList: forecastList)
+              
+              DispatchQueue.main.async {
+                  guard let vc = self.foreCastVC else {return}
+                  vc.viewModel = viewModel
+                  self.navigationController.present(vc, animated: true, completion: nil)
+              }
+          }
+      }
+      
+      
   }
 }

@@ -15,6 +15,6 @@ extension APIManager {
     }
     
     static func forecastUrl(_ cityId: Int) -> String  {
-        return "https://api.openweathermap.org/data/2.5/forecast?id=\(cityId)&appid=b055d6bb700a0b449c6429337a17c28f"
+        return "https://api.openweathermap.org/data/2.5/forecast?id=\(cityId)&appid=b055d6bb700a0b449c6429337a17c28f&units=metric"
     }
 }
