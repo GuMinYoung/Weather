@@ -21,7 +21,12 @@ class CityCoordinator: BaseCoordinator {
     }
     
     override func start() {
+        if let vc = self.cityListVC {
+            self.navigationController.setViewControllers([vc], animated: false)
+        }
+        
         var viewModel = CityListViewModel()
+        
         CityListService.shared.fetchCityList { cities in
             guard let cities = cities else {return}
             
@@ -31,7 +36,7 @@ class CityCoordinator: BaseCoordinator {
             DispatchQueue.main.async {
                 guard let vc = self.cityListVC else {return}
                 vc.viewModel = viewModel
-                self.navigationController.setViewControllers([vc], animated: false)
+                vc.cityTableView.reloadData()
             }
         }
     }
